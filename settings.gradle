@@ -1,0 +1,2 @@
+include ':app', ':foreach'
+rootProject.name='Foreach'
