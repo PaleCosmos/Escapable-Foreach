@@ -5,25 +5,32 @@ import java.util.*
 
 class Dictionary<K, V> {
 
-    private val keys = Vector<K>()
-    private val values = Vector<V>()
+    private var keys: Vector<K>
+    private var values: Vector<V>
 
-    operator fun iterator(): Vector<Pair<K, V>> = Vector<Pair<K, V>>().apply {
-        for (num in 0 until keys.size) {
-            add(Pair(keys[num], values[num]))
+    constructor() {
+        keys = Vector()
+        values = Vector()
+    }
+
+    private constructor(mKeys: Vector<K>, mValues: Vector<V>) {
+        keys = mKeys
+        values = mValues
+    }
+
+
+    fun clear() {
+        keys.clear()
+        values.clear()
+    }
+
+    fun copy() = Dictionary(keys, values)
+
+    fun deepCopy() = Dictionary<K, V>().apply {
+        this@Dictionary.foreach { key: K, value: V ->
+            put(key, value)
         }
-
-
     }
-    operator fun <E> Vector<E>.hasNext(): Boolean {
-        return true
-    }
-
-    operator fun Vector<Pair<K, V>>.next():Pair<K,V>{
-        return Pair(1 as K, 2 as V)
-    }
-
-
 
     fun put(key: K, value: V) =
         try {
@@ -84,4 +91,75 @@ class Dictionary<K, V> {
 
     fun keys(): Enumeration<K> = keys.elements()
 
+    operator fun iterator(): Iterator<Pair<K, V>> = object : Iterator<Pair<K, V>> {
+        var current = 0
+        override fun hasNext(): Boolean {
+            return current < size() - 1
+        }
+
+        override fun next(): Pair<K, V> {
+            current += 1
+            return Pair(keys[current], values[current])
+        }
+    }
+
+    fun foreach(Do: (i: Int, key: K, value: V) -> Unit?) {
+        for (num in 0 until keys.size) {
+            Do(num, keys[num], values[num])
+        }
+    }
+
+    fun foreach(Do: (i: Int) -> Unit) {
+        for (num in 0 until keys.size) {
+            Do(num)
+        }
+    }
+
+    fun foreach(Do: (key: K, value: V) -> Unit) {
+        for (num in 0 until keys.size) {
+            Do(keys[num], values[num])
+        }
+    }
+
+    operator fun plus(another: Dictionary<K, V>) =
+        try {
+            another.foreach { K, V ->
+                this.keys.add(K)
+                this.values.add(V)
+            }
+            true
+        } catch (e: Exception) {
+            false
+        }
+
+    operator fun minus(another: Dictionary<K, V>) =
+        try {
+            var flag = false
+            another.foreach { K, V ->
+                if (keys.contains(K)) {
+                    keys.remove(K)
+                    values.remove(V)
+                    flag = true
+                }
+            }
+            flag
+        } catch (e: Exception) {
+            false
+        }
+
+    fun setValue(key: K, value: V) = try {
+        var flag = false
+        foreach { i, k, _ ->
+            if (k == key) {
+                flag = true
+                values[i] = value
+            }
+        }
+        flag
+    } catch (e: Exception) {
+        false
+    }
 }
+
+
+
