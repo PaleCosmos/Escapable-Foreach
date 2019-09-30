@@ -2,9 +2,7 @@ package com.palecosmos.example.escapableforeach
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.palecosmos.escapableforeach.Dictionary
-import com.palecosmos.escapableforeach.escapableForEach
-import com.palecosmos.escapableforeach.findAllValue
+import com.palecosmos.escapableforeach.*
 import org.json.JSONArray
 
 class MainActivity : AppCompatActivity() {
@@ -25,12 +23,14 @@ class MainActivity : AppCompatActivity() {
         val x = JSONArray()
 
         x.escapableForEach<Int> { index, value ->
-            //TODO()
-            true
+            return@escapableForEach CONTINUE
         }
-        x.findAllValue().escapableForEach { index, value ->
-            //TODO()
-            true
+        x.findAllValue().escapableForEach { _, value ->
+            if (value == null) {
+                return@escapableForEach CONTINUE
+            }
+
+            return@escapableForEach BREAK
         }
 
     }
