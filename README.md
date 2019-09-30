@@ -1,7 +1,7 @@
 # Escapable-Foreach
 
 <p align="center">
-<a herf="https://opensource.org/licenses/Apache-2.0"><img alt="https://img.shields.io/badge/LICENSE-Apache%202.0-blue"/></a>
+<a herf="https://opensource.org/licenses/Apache-2.0"><img src="https://img.shields.io/badge/LICENSE-Apache%202.0-blue"/></a>
 </p>
 
 <p align="center">
