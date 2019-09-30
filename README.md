@@ -5,7 +5,7 @@
 </p>
 
 <p align="center">
-🦚kotlin extention (오픈소스연습)
+kotlin extention (오픈소스연습)
 </p>
 
 ## Implementation
