@@ -5,7 +5,7 @@
 </p>
 
 
-`Escapable-Foreach` is a kotlin extension that facilitates  iterative action on repeatable objects.
+`Escapable-Foreach` is a kotlin extension that facilitates  iterative action on iterable objects.
 
 
 ## Implementation
