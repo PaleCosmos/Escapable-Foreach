@@ -1,6 +1,6 @@
 # Escapable-Foreach
 
-<p align="center">
+<p>
 <a herf="https://opensource.org/licenses/Apache-2.0"><img src="https://img.shields.io/badge/LICENSE-Apache%202.0-blue"/></a>
 </p>
 
