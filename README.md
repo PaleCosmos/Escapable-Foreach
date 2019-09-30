@@ -15,5 +15,5 @@ kotlin extention (오픈소스연습)
 
 ### Gradle
 ```gradle
-implementation 'com.github.PaleCosmos:Escapable-Foreach:v1.0'
+implementation 'com.github.PaleCosmos:Escapable-Foreach:v1.1'
 ```
