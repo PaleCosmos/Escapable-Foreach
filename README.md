@@ -1,4 +1,4 @@
-#Escapable-Foreach
+# Escapable-Foreach
 
 <p>
 <a herf="https://opensource.org/licenses/Apache-2.0"><img src="https://img.shields.io/badge/LICENSE-Apache%202.0-blue"/></a>
@@ -8,12 +8,12 @@
 `Escapable-Foreach` is a kotlin extension that facilitates  iterative action on repeatable objects.
 
 
-##Implementation
+## Implementation
 
 
 [![Jitpack](https://jitpack.io/v/PaleCosmos/Escapable-Foreach.svg)](https://jitpack.io/#PaleCosmos/Escapable-Foreach)
 
-###Gradle
+### Gradle
 Add a dependency code to your module's `build.gradle`.
 ```gradle
 dependencies {
