@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.palecosmos.escapableforeach.Dictionary
 import com.palecosmos.escapableforeach.escapableForEach
+import com.palecosmos.escapableforeach.findAllValue
+import org.json.JSONArray
 
 class MainActivity : AppCompatActivity() {
 
@@ -19,5 +21,17 @@ class MainActivity : AppCompatActivity() {
         }
         Dictionary<String, String>().escapableForeach { index, key, value -> true }
         ArrayList<String>().asReversed()
+
+        val x = JSONArray()
+
+        x.escapableForEach<Int> { index, value ->
+            //TODO()
+            true
+        }
+        x.findAllValue().escapableForEach { index, value ->
+            //TODO()
+            true
+        }
+
     }
 }
