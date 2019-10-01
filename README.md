@@ -8,15 +8,15 @@
 `Escapable-Foreach` is a kotlin extension that facilitates  iterative action on iterable objects.
 
 ```kotlin
-        Array<out T>.escapableForEach { index:Int, value:T? ->}
+        Array<out T>.escapableForEach { index:Int, value:T? -> TODO() }
         
-        List<T>.escapableForEach { index:Int, value:T? ->}
+        List<T>.escapableForEach { index:Int, value:T? -> TODO() }
         
-        Set<T>.escapableForEach { index:Int, value:T? ->}
+        Set<T>.escapableForEach { index:Int, value:T? -> TODO() }
         
-        Map<T, S>.escapableForEach { index:Int, key:T?, value:T? ->}
+        Map<T, S>.escapableForEach { index:Int, key:T?, value:T? -> TODO() }
         
-        JSONArray.escapableForEach<T> { index:Int, value:T? ->}
+        JSONArray.escapableForEach<T> { index:Int, value:T? -> TODO() }
         
 ```
 
