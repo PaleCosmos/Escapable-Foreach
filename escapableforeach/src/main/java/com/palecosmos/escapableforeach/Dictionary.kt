@@ -18,17 +18,19 @@ class Dictionary<K, V> {
         values = Vector()
 
         params.escapableForEach { _, value ->
-            put(value?.first, value?.second)
+            if (value != null)
+                put(value.first, value?.second)
             return@escapableForEach CONTINUE
         }
     }
 
-    constructor(keyList: Array<K>, setter: (K?) -> (V?)) {
+    constructor(keyList: Array<K>, setter: (K) -> (V?)) {
         keys = Vector()
         values = Vector()
 
         keyList.escapableForEach { _, value ->
-            put(value, setter(value))
+            if (value != null)
+                put(value, setter(value))
             return@escapableForEach CONTINUE
         }
 
@@ -53,7 +55,7 @@ class Dictionary<K, V> {
         }
     }
 
-    fun put(key: K?, value: V?) =
+    fun put(key: K, value: V?) =
         try {
             if (keys.contains(key)) {
                 false
@@ -82,7 +84,7 @@ class Dictionary<K, V> {
 
     fun isEmpty() = keys.size == 0
 
-    fun remove(key: K?) = try {
+    fun remove(key: K) = try {
         if (keys.contains(key)) {
             val index = keys.indexOf(key)
             keys.removeElementAt(index)
@@ -95,7 +97,7 @@ class Dictionary<K, V> {
         false
     }
 
-    fun get(key: K?): V? = try {
+    fun get(key: K): V? = try {
         if (keys.contains(key)) {
             val index = keys.indexOf(key)
             values[index]
@@ -124,9 +126,22 @@ class Dictionary<K, V> {
         }
     }
 
-    fun escapableForeach(Do: (index: Int, key: K?, value: V?) -> Boolean) {
+    fun escapableForeach(Do: (index: Int, key: K, value: V?) -> Boolean) {
         loop@ for (st in 0 until size()) {
             if (!Do(st, keys[st], values[st])) break@loop
+        }
+    }
+
+    fun escapableForeachNullable(
+        NotNull: (index: Int, key: K, value: V) -> Boolean,
+        IsNull: (index: Int, key: K) -> Boolean
+    ) {
+        loop@ for (st in 0 until size()) {
+            if (values[st] != null) {
+                if (!NotNull(st, keys[st], values[st])) break@loop
+            } else {
+                if (!IsNull(st, keys[st])) break@loop
+            }
         }
     }
 

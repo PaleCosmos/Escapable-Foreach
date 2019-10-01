@@ -1,9 +1,23 @@
 package com.palecosmos.escapableforeach
 
-inline fun <T> Array<out T>?.escapableForEach(Do: (index: Int, value: T?) -> Boolean) {
+inline fun <T> Array<out T?>?.escapableForEach(Do: (index: Int, value: T?) -> Boolean) {
     if (this != null)
         loop@ for (st in 0 until size) {
             if (!Do(st, this[st])) break@loop
+        }
+}
+
+inline fun <T> Array<out T?>?.escapableForEachNullable(
+    NotNull: (index: Int, value: T) -> Boolean,
+    IsNull: (index: Int) -> Boolean = { _ -> true }
+) {
+    if (this != null)
+        loop@ for (st in 0 until size) {
+            if (this[st] != null) {
+                if (!NotNull(st, this[st]!!)) break@loop
+            } else {
+                if (!IsNull(st)) break@loop
+            }
         }
 }
 

@@ -52,7 +52,7 @@
 Add a dependency code to your module's `build.gradle`.
 ```gradle
 dependencies {
-  implementation 'com.github.PaleCosmos:Escapable-Foreach:v1.1'
+  implementation 'com.github.PaleCosmos:Escapable-Foreach:v1.2'
 }
 ```
 ***or***
