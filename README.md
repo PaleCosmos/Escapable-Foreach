@@ -16,7 +16,7 @@
         
         Map<T, S>.escapableForEach { index:Int, key:T?, value:T? ->}
         
-        jsonArray.escapableForEach<T> { index:Int, value:T? ->}
+        JSONArray.escapableForEach<T> { index:Int, value:T? ->}
         
 ```
 
