@@ -11,18 +11,36 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val dictionary = Dictionary(arrayOf(0, 1, 2, 3, 4, 5)) { i ->
-            "$i"
+        val array = arrayOf("")
+        val arrayList = ArrayList<String>()
+        val list = List<String>(0) { i -> "" }
+        val jsonArray = JSONArray()
+
+        array.escapableForEach { index, value ->
+            if(index>3)return@escapableForEach BREAK
+            function(index, value)
+            return@escapableForEach CONTINUE
+        }
+        arrayList.escapableForEach { index, value ->
+            if(index>3)return@escapableForEach BREAK
+            function(index, value)
+            return@escapableForEach CONTINUE
+        }
+        list.escapableForEach { index, value ->
+            if(index>3)return@escapableForEach BREAK
+            function(index, value)
+            return@escapableForEach CONTINUE
+        }
+        jsonArray.escapableForEach<String> { index, value ->
+            if(index>3)return@escapableForEach BREAK
+            function(index, value)
+            return@escapableForEach CONTINUE
         }
 
-        dictionary.escapableForeach { index, key, value ->
-            if (index < 1 || key == 3) return@escapableForeach CONTINUE
 
-            if (value == null) return@escapableForeach BREAK
+    }
 
-            CONTINUE
-        }
-
+    fun function(a: Int, b: String?) {
 
     }
 }
