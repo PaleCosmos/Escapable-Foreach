@@ -89,7 +89,7 @@ dependencies {
         }
 ```
 
-### Escapable-Foreach (Nullable Type)
+### Escapable-Foreach (Nullable Type Check)
 ```kotlin
         if (hashMap != null) {
             var index = 0
