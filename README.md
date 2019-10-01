@@ -14,7 +14,7 @@
         
         Set<T>.escapableForEach { index:Int, value:T? -> TODO() }
         
-        Map<T, S>.escapableForEach { index:Int, key:T?, value:T? -> TODO() }
+        Map<T, S>.escapableForEach { index:Int, key:T, value:T? -> TODO() }
         
         JSONArray.escapableForEach<T> { index:Int, value:T? -> TODO() }
         
@@ -87,6 +87,44 @@ dependencies {
             if (key == "kotlin") return@escapableForEach CONTINUE
             return@escapableForEach function(key, value)
         }
+```
+
+### Escapable-Foreach (Nullable Type)
+```kotlin
+        if (hashMap != null) {
+            var index = 0
+            for (pair in hashMap) {
+                if (pair.value != null) {
+                    Log.d("LOG", "index : $index, ${pair.value}")
+                    if (pair.key == "kotlin") {
+                        index++
+                        continue
+                    }
+                    if (!function(pair.key, pair.value)) {
+                        break
+                    }
+
+                } else {
+                    Log.d("LOG", "index : $index, isNull")
+                    if (!function(pair.key)) {
+                        break
+                    }
+                }
+                index++
+            }
+        }
+```
+***Same as***
+```kotlin
+        hashMap.escapableForEachNullable(NotNull = { index, key, value ->
+            Log.d("LOG", "index : $index, $value")
+            if (key == "kotlin") return@escapableForEachNullable CONTINUE
+            return@escapableForEachNullable function(key, value)
+        },
+            IsNull = { index, key ->
+                Log.d("LOG", "index : $index, isNull")
+                return@escapableForEachNullable function(key)
+            })
 ```
 
 ### Dictionary
