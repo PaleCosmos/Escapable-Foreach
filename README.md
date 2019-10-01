@@ -20,6 +20,28 @@
         
 ```
 
+```kotlin
+        array.escapableForEach { index, value ->
+            if(index>3)return@escapableForEach BREAK
+            function(index, value)
+            return@escapableForEach CONTINUE
+        }
+        arrayList.escapableForEach { index, value ->
+            if(index>3)return@escapableForEach BREAK
+            function(index, value)
+            return@escapableForEach CONTINUE
+        }
+        list.escapableForEach { index, value ->
+            if(index>3)return@escapableForEach BREAK
+            function(index, value)
+            return@escapableForEach CONTINUE
+        }
+        jsonArray.escapableForEach<String> { index, value ->
+            if(index>3)return@escapableForEach BREAK
+            function(index, value)
+            return@escapableForEach CONTINUE
+        }
+```
 
 ## Implementation
 
@@ -43,25 +65,27 @@ dependencies {
 ## Usage
 ### Escapable-Foreach
 ```kotlin
-        array.escapableForEach { index, value ->
-            if(index>3)return@escapableForEach BREAK
-            function(index, value)
-            return@escapableForEach CONTINUE
+        if (hashMap != null) {
+            var index = 0
+            for (pair in hashMap) {
+                Log.d("LOG", "index : $index")
+                if (pair.key == "kotlin") {
+                    index++
+                    continue
+                }
+                if (!function(pair.key, pair.value)) {
+                    break
+                }
+                index++
+            }
         }
-        arrayList.escapableForEach { index, value ->
-            if(index>3)return@escapableForEach BREAK
-            function(index, value)
-            return@escapableForEach CONTINUE
-        }
-        list.escapableForEach { index, value ->
-            if(index>3)return@escapableForEach BREAK
-            function(index, value)
-            return@escapableForEach CONTINUE
-        }
-        jsonArray.escapableForEach<String> { index, value ->
-            if(index>3)return@escapableForEach BREAK
-            function(index, value)
-            return@escapableForEach CONTINUE
+```
+***Same as***
+```kotlin
+        hashMap.escapableForEach { index, key, value ->
+            Log.d("LOG", "index : $index")
+            if (key == "kotlin") return@escapableForEach CONTINUE
+            return@escapableForEach function(key, value)
         }
 ```
 
