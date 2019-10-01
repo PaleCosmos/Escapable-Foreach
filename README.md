@@ -53,7 +53,26 @@ dependencies {
 ## Usage
 ### Escapable-Foreach
 ```kotlin
-TODO()
+        array.escapableForEach { index, value ->
+            if(index>3)return@escapableForEach BREAK
+            function(index, value)
+            return@escapableForEach CONTINUE
+        }
+        arrayList.escapableForEach { index, value ->
+            if(index>3)return@escapableForEach BREAK
+            function(index, value)
+            return@escapableForEach CONTINUE
+        }
+        list.escapableForEach { index, value ->
+            if(index>3)return@escapableForEach BREAK
+            function(index, value)
+            return@escapableForEach CONTINUE
+        }
+        jsonArray.escapableForEach<String> { index, value ->
+            if(index>3)return@escapableForEach BREAK
+            function(index, value)
+            return@escapableForEach CONTINUE
+        }
 ```
 
 ### Dictionary
