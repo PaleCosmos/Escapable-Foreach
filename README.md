@@ -8,26 +8,16 @@
 `Escapable-Foreach` is a kotlin extension that facilitates  iterative action on iterable objects.
 
 ```kotlin
-        array.escapableForEach { index, value ->
-            if(index>3)return@escapableForEach BREAK
-            function(index, value)
-            return@escapableForEach CONTINUE
-        }
-        arrayList.escapableForEach { index, value ->
-            if(index>3)return@escapableForEach BREAK
-            function(index, value)
-            return@escapableForEach CONTINUE
-        }
-        list.escapableForEach { index, value ->
-            if(index>3)return@escapableForEach BREAK
-            function(index, value)
-            return@escapableForEach CONTINUE
-        }
-        jsonArray.escapableForEach<String> { index, value ->
-            if(index>3)return@escapableForEach BREAK
-            function(index, value)
-            return@escapableForEach CONTINUE
-        }
+        Array<out T>.escapableForEach { index:Int, value:T? -> TODO() }
+        
+        List<T>.escapableForEach { index:Int, value:T? -> TODO() }
+        
+        Set<T>.escapableForEach { index:Int, value:T? -> TODO() }
+        
+        Map<T, S>.escapableForEach { index:Int, key:T?, value:T? -> TODO() }
+        
+        JSONArray.escapableForEach<T> { index:Int, value:T? -> TODO() }
+        
 ```
 
 
@@ -53,7 +43,26 @@ dependencies {
 ## Usage
 ### Escapable-Foreach
 ```kotlin
-TODO()
+        array.escapableForEach { index, value ->
+            if(index>3)return@escapableForEach BREAK
+            function(index, value)
+            return@escapableForEach CONTINUE
+        }
+        arrayList.escapableForEach { index, value ->
+            if(index>3)return@escapableForEach BREAK
+            function(index, value)
+            return@escapableForEach CONTINUE
+        }
+        list.escapableForEach { index, value ->
+            if(index>3)return@escapableForEach BREAK
+            function(index, value)
+            return@escapableForEach CONTINUE
+        }
+        jsonArray.escapableForEach<String> { index, value ->
+            if(index>3)return@escapableForEach BREAK
+            function(index, value)
+            return@escapableForEach CONTINUE
+        }
 ```
 
 ### Dictionary
