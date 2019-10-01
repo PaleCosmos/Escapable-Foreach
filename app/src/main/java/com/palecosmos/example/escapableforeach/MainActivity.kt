@@ -13,26 +13,26 @@ class MainActivity : AppCompatActivity() {
 
         val array = arrayOf("")
         val arrayList = ArrayList<String>()
-        val list = List<String>(0) { i -> "" }
+        val list = List(0) { i -> "$i" }
         val jsonArray = JSONArray()
 
         array.escapableForEach { index, value ->
-            if(index>3)return@escapableForEach BREAK
+            if (index > 3) return@escapableForEach BREAK
             function(index, value)
             return@escapableForEach CONTINUE
         }
         arrayList.escapableForEach { index, value ->
-            if(index>3)return@escapableForEach BREAK
+            if (index > 3) return@escapableForEach BREAK
             function(index, value)
             return@escapableForEach CONTINUE
         }
         list.escapableForEach { index, value ->
-            if(index>3)return@escapableForEach BREAK
+            if (index > 3) return@escapableForEach BREAK
             function(index, value)
             return@escapableForEach CONTINUE
         }
         jsonArray.escapableForEach<String> { index, value ->
-            if(index>3)return@escapableForEach BREAK
+            if (index > 3) return@escapableForEach BREAK
             function(index, value)
             return@escapableForEach CONTINUE
         }
