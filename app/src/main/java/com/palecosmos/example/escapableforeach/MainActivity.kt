@@ -11,27 +11,18 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val sd = HashMap<String, String>()
-        sd.escapableForEach { index, key, value -> true }
-        val cd = HashSet<String>()
-        cd.escapableForEach { index, value ->
-            true
+        val dictionary = Dictionary(arrayOf(0, 1, 2, 3, 4, 5)) { i ->
+            "$i"
         }
-        Dictionary<String, String>().escapableForeach { index, key, value -> true }
-        ArrayList<String>().asReversed()
 
-        val x = JSONArray()
+        dictionary.escapableForeach { index, key, value ->
+            if (index < 1 || key == 3) return@escapableForeach CONTINUE
 
-        x.escapableForEach<Int> { index, value ->
-            return@escapableForEach CONTINUE
+            if (value == null) return@escapableForeach BREAK
+
+            CONTINUE
         }
-        x.findAllValue().escapableForEach { _, value ->
-            if (value == null) {
-                return@escapableForEach CONTINUE
-            }
 
-            return@escapableForEach BREAK
-        }
 
     }
 }

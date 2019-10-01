@@ -13,6 +13,27 @@ class Dictionary<K, V> {
         values = Vector()
     }
 
+    constructor(vararg params: Pair<K, V>) {
+        keys = Vector()
+        values = Vector()
+
+        params.escapableForEach { _, value ->
+            put(value?.first, value?.second)
+            return@escapableForEach CONTINUE
+        }
+    }
+
+    constructor(keyList: Array<K>, setter: (K?) -> (V?)) {
+        keys = Vector()
+        values = Vector()
+
+        keyList.escapableForEach { _, value ->
+            put(value, setter(value))
+            return@escapableForEach CONTINUE
+        }
+
+    }
+
     private constructor(mKeys: Vector<K>, mValues: Vector<V>) {
         keys = mKeys
         values = mValues

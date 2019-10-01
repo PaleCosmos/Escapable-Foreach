@@ -7,6 +7,10 @@
 
 `Escapable-Foreach` is a kotlin extension that facilitates  iterative action on iterable objects.
 
+```kotlin
+TODO()
+```
+
 
 ## Implementation
 
@@ -35,7 +39,17 @@ TODO()
 
 ### Dictionary
 ```kotlin
-TODO()
+  val dictionary = Dictionary(arrayOf(0, 1, 2, 3, 4, 5)) { i ->
+            "$i"
+        }
+
+        dictionary.escapableForeach { index, key, value ->
+            if (index < 1 || key == 3) return@escapableForeach CONTINUE
+            
+            if (value == null) return@escapableForeach BREAK
+
+            CONTINUE
+        }
 ```
 
 # License
